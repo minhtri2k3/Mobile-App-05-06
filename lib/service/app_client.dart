@@ -9,6 +9,15 @@ part 'app_client.g.dart';
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
- 
+  @GET("/users")
+  Future<List<User>> getAllUsers();
+
+  @GET("/users/{id}")
+  Future<User> getUser(@Path("id") int id);
+  @GET("/users")
+  Future<List<User>> getUsersPagination({
+    @Query("limit")   required int limit ,
+    @Query("page")  required int page
+  });
 
 }
