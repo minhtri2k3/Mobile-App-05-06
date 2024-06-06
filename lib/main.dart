@@ -314,6 +314,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: PagedListView<int, User>(
               pagingController: _pagingController,
               builderDelegate: PagedChildBuilderDelegate<User>(
+                transitionDuration : const Duration(microseconds: 500),
                 itemBuilder: (context, user, index) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -425,6 +426,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
+
             ),
       ),
     ),
