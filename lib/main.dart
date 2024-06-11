@@ -86,20 +86,37 @@ LinearGradient getCustomGradient() {
     colors: <Color>[Color(0xfff57689), Color(0xffecabe2)],
   );
 }
-Future<User> fetchUser() async{
-   final client = ApiClient(
-       Dio
-         (BaseOptions(contentType: "application/json"),
-   ),
-   );
-   try{
-        final response  = await client.getUser(8);
-        print(response.firstName);
-        return response;
-   }catch(e){
-     print('Error: $e');
-     throw Exception("There is error in API");
-   }
+
+
+class CustomErrorIndicator extends StatelessWidget {
+  final String errorMessage;
+  final VoidCallback onTryAgain;
+
+  const CustomErrorIndicator({
+    Key? key,
+    required this.errorMessage,
+    required this.onTryAgain,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Error: $errorMessage',
+            style: TextStyle(color: Colors.red),
+          ),
+          SizedBox(height: 8),
+          ElevatedButton(
+            onPressed: onTryAgain,
+            child: Text('Try Again'),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -151,8 +168,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   Future<void> _fetchPage(int pageKey) async{
     try {
-      counter = counter + 1;
-      print(counter);
       final newUsers = await widget.client.getUsersPagination(limit: _pageSize, page: pageKey);
       final isLastPage = newUsers.length  < _pageSize;
       if (isLastPage) {
@@ -425,6 +440,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
+                firstPageErrorIndicatorBuilder: (context) => CustomErrorIndicator(
+                  errorMessage: _pagingController.error?.toString() ?? 'Unknown error',
+                  onTryAgain: () => _pagingController.refresh(),
+                ),
+                  noItemsFoundIndicatorBuilder: (context) => CustomErrorIndicator(
+                    errorMessage: _pagingController.error?.toString() ?? 'API get error',
+                    onTryAgain: () => _pagingController.refresh(),)
               ),
 
             ),
