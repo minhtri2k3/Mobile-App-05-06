@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:createtest2/pages/counter_page.dart';
+import 'package:createtest2/pages/flutter_login.dart';
 import 'package:createtest2/service/app_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/painting.dart';
@@ -14,8 +16,35 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'models/personal.dart';
-void main() {
-  runApp(MyApp());
+void main(){
+   // runApp(TestMobx());
+  //    runApp(MyApp());
+  runApp(LogPage());
+}
+class TestMobx extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+      return new MaterialApp(
+         home:  CounterPage(),
+      );
+  }
+}
+class LogPage extends StatelessWidget{
+  late final Dio dio;
+  late final ApiClient client;
+  LogPage() {
+    dio = Dio(BaseOptions(contentType: "application/json"));
+    client = ApiClient(dio);
+  }
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+       home:  PageLogin(title: '', client: client,),
+    );
+    throw UnimplementedError();
+  }
+
 }
 class User{
   final int id;
