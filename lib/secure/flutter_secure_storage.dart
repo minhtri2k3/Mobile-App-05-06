@@ -1,10 +1,10 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class SecureStorage {
-  final _storage = FlutterSecureStorage();
+  final FlutterSecureStorage _storage = FlutterSecureStorage();
 
   // Store JWT
-  Future<void> storeJwt(String jwt) async {
-    await _storage.write(key: 'jwt', value: jwt);
+  Future<void> storeJwt({required String key, required String value}) async {
+    await _storage.write(key: key, value: value);
   }
 
   // Retrieve JWT

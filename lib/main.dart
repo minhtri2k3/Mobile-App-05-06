@@ -4,19 +4,17 @@ import 'package:createtest2/pages/counter_page.dart';
 import 'package:createtest2/pages/flutter_login.dart';
 import 'package:createtest2/service/app_client.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:ffi';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'models/personal.dart';
-void main(){
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
    // runApp(TestMobx());
   //    runApp(MyApp());
   runApp(LogPage());
@@ -201,11 +199,11 @@ class _MyHomePageState extends State<MyHomePage> {
       final isLastPage = newUsers.length  < _pageSize;
       if (isLastPage) {
         print("This is the last page");
-        _pagingController.appendLastPage(newUsers);
+        _pagingController.appendLastPage(newUsers.cast<User>());
       } else {
         print("Go to the next page");
         final nextPageKey = pageKey + 1;
-        _pagingController.appendPage(newUsers, nextPageKey);
+        _pagingController.appendPage(newUsers.cast<User>(), nextPageKey);
       }
     } catch (e) {
       _pagingController.error = e;

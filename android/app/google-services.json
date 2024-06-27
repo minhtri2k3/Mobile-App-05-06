@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "456968626925",
+    "project_id": "fir-project-ca790",
+    "storage_bucket": "fir-project-ca790.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456968626925:android:2877bd678211ce7e10e2e4",
+        "android_client_info": {
+          "package_name": "com.example.createtest2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2i7NKXeCq3LDm8rLdfoESMOW419WiCcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
