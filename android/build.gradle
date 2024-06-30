@@ -1,14 +1,14 @@
-buildscript {
-    ext.kotlin_version = '1.8.22' // Use the latest version you want
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.android.tools.build:gradle:7.0.4' // or the version you are using
-    }
-}
+// buildscript {
+//     ext.kotlin_version = '1.8.22' // Use the latest version you want
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+//     dependencies {
+//         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//         classpath 'com.android.tools.build:gradle:7.0.4' // or the version you are using
+//     }
+// }
 
 allprojects {
     repositories {
