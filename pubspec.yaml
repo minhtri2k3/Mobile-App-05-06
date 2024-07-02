@@ -47,6 +47,7 @@ dependencies:
   infinite_scroll_pagination:
   mobx:
   flutter_mobx:
+  cloud_firestore: ^5.0.2
 dev_dependencies:
   retrofit:
   mobx_codegen:
