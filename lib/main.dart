@@ -12,12 +12,13 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'models/personal.dart';
+import 'models/user.dart';
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
    // runApp(TestMobx());
-  //    runApp(MyApp());
-  runApp(LogPage());
+   //   runApp(MyApp());
+   runApp(LogPage());
 }
 class TestMobx extends StatelessWidget{
   @override
@@ -43,47 +44,6 @@ class LogPage extends StatelessWidget{
     throw UnimplementedError();
   }
 
-}
-class User{
-  final int id;
-   String firstName;
-  String lastName;
-  String password;
-  Personal personal;
-   // User({required this.id, required this.firstName, required this.lastName, required this.password});
-    User({required this.id, required this.firstName, required this.lastName, required this.password , required this.personal});
-
-  factory User.fromJson(Map<String, dynamic> json){
-    return User (
-        id : json['id'],
-        firstName: json['firstName'],
-        lastName: json['lastName'],
-        password: json['password'],
-         personal: Personal.fromJson(json['personal']),        )
-        ;
-  }
-}
-class Personal {
-  final int id;
-  final String address;
-  final String age;
-  final String gender;
-
-  Personal({
-    required this.id,
-    required this.address,
-    required this.age,
-    required this.gender,
-  });
-
-  factory Personal.fromJson(Map<String, dynamic> json) {
-    return Personal(
-      id: json['id'],
-      address: json['Address'],
-      age: json['Age'],
-      gender: json['Gender'],
-    );
-  }
 }
 
 class GradientIcon extends StatelessWidget {
@@ -392,16 +352,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: CircleAvatar(),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 15),
+                                    padding: const EdgeInsets.only(left: 15),
                                     child: Column(
                                       crossAxisAlignment:
                                       CrossAxisAlignment.start,
                                       children: [
-                                        Text(user.firstName,
+                                        Text(user.firstName ??'N/A',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 17)),
-                                        Text(user.lastName,
+                                        Text(user.lastName ??'N/A',
                                             style: TextStyle(
                                                 fontSize: 12.5,
                                                 color: Colors.grey)),

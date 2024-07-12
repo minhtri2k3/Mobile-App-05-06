@@ -9,7 +9,6 @@
          classpath 'com.android.tools.build:gradle:7.0.2' // or the version you are using
      }
  }
-
 allprojects {
     repositories {
         google()
